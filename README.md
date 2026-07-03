@@ -58,8 +58,32 @@ Copy the relevant playbook section into your task brief, then adapt it to the
 actual project. Keep it short. The point is to remove ambiguity before the
 model acts.
 
+Use this pattern:
+
+```text
+Task: <what you want done>
+Boundary: <which playbook rule applies>
+Evidence: <what should be checked before action>
+Stop condition: <when the model should pause and ask>
+```
+
 For higher-assurance evaluation, use a harness, tests, policy gates, logs, and
 reviewable artifacts. These playbooks are the first layer, not the final layer.
+
+## When This Is Not Enough
+
+Use stronger controls when a task can mutate production systems, process
+credentials, call external providers, install dependencies, execute code, move
+money, send messages, or change access permissions.
+
+Stronger controls include:
+
+- runtime policy gates;
+- tests and validators;
+- allowlists and signed-source checks;
+- logging and audit trails;
+- peer review or maintainer approval;
+- benchmark runs with [Agentic Security Harness](https://github.com/krivonosoff161/agentic-security-harness).
 
 ## Related Projects
 
@@ -69,4 +93,3 @@ reviewable artifacts. These playbooks are the first layer, not the final layer.
   - research toolkit for provenance, trust, and authority handoffs.
 - [ai-agent-handoff](https://github.com/krivonosoff161/ai-agent-handoff)
   - file-based handoff protocol for AI coding agents.
-

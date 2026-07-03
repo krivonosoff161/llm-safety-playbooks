@@ -27,6 +27,15 @@ Keep private artifacts, credentials, local logs, and generated scratch files out
 of the commit.
 ```
 
+## Example Task Brief
+
+```text
+Make this change through a branch and pull request. Before editing, run git
+status and list unrelated dirty files. Do not push to main, do not merge, and
+do not modify files outside the task scope. After editing, run the relevant
+checks and summarize the exact files changed.
+```
+
 ## Check Before Acting
 
 - What branch am I on?
@@ -42,3 +51,8 @@ of the commit.
 - Report exact checks run.
 - Open a PR and let the maintainer merge.
 
+## When This Is Not Enough
+
+Use branch protection, required reviews, CI checks, secret scanning, and
+repository permissions. A prompt cannot stop a tool from pushing to the wrong
+branch if credentials and permissions allow it.

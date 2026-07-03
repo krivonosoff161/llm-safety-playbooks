@@ -33,6 +33,15 @@ If verification is not possible, mark the resource as unverified and do not use
 it for execution, credentials, deployment, or automation.
 ```
 
+## Example Task Brief
+
+```text
+If you suggest any package, URL, domain, API endpoint, webhook, or service
+portal, label it as unverified until you check it against an official source or
+trusted registry. Do not install, fetch, call, or commit generated resources.
+If you cannot verify the resource, propose a verification step instead.
+```
+
 ## Check Before Acting
 
 - Did the resource come from an official source or from model text?
@@ -47,3 +56,9 @@ it for execution, credentials, deployment, or automation.
 - Keep unverified resources out of code, CI, deployment, and credentials.
 - Record uncertainty instead of guessing.
 
+## When This Is Not Enough
+
+Use allowlists, dependency lockfiles, package-signing checks, DNS controls,
+network egress policies, and CI gates when an agent can fetch or install
+resources. This playbook names the boundary; it does not monitor the internet
+or detect real-world phantom squatting.
