@@ -29,6 +29,16 @@ must stay out of public artifacts. Public outputs should contain only sanitized
 summaries, hashes, aggregate counts, and clear non-claims.
 ```
 
+## Example Task Brief
+
+```text
+Design a defensive test for this failure class using only synthetic or mock
+targets. Do not include live-target instructions, real credentials, phishing
+materials, provider-abuse steps, or reusable attack payloads. The public output
+should contain scenario purpose, expected safe behavior, aggregate result
+fields, and explicit non-claims.
+```
+
 ## Check Before Acting
 
 - Is the target synthetic, mock, owned, or explicitly authorized?
@@ -43,3 +53,8 @@ summaries, hashes, aggregate counts, and clear non-claims.
 - Publish sanitized summaries with explicit limitations.
 - Separate "planned", "tested", and "shipped" claims.
 
+## When This Is Not Enough
+
+Use a formal authorization letter, rules of engagement, legal review, provider
+terms, rate limits, and separate private evidence handling before any real
+system test. This playbook is for scoping, not permission.

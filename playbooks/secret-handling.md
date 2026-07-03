@@ -27,6 +27,14 @@ If a secret is needed, ask me to confirm the variable name or presence, not the
 value. Use redacted placeholders in docs and logs.
 ```
 
+## Example Task Brief
+
+```text
+Debug why authentication is failing without opening `.env` or printing secret
+values. You may inspect code paths, variable names, config schemas, and redacted
+logs. If a secret value seems necessary, stop and ask me to verify it locally.
+```
+
 ## Check Before Acting
 
 - Could this file contain credentials?
@@ -40,3 +48,8 @@ value. Use redacted placeholders in docs and logs.
 - Replace sensitive values with `<redacted>`.
 - Keep raw logs and private traces out of public repositories.
 
+## When This Is Not Enough
+
+Use secret scanning, least-privilege credentials, vaults, masked CI logs, and
+runtime egress controls when real credentials are present. Prompt rules do not
+prevent accidental exposure by tools, shell commands, or logs.
