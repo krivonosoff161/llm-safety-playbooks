@@ -70,6 +70,9 @@ Stop condition: <when the model should pause and ask>
 For higher-assurance evaluation, use a harness, tests, policy gates, logs, and
 reviewable artifacts. These playbooks are the first layer, not the final layer.
 
+For a source-backed view of what these playbooks cover and where they stop, see
+[docs/coverage-map.md](docs/coverage-map.md).
+
 ## When This Is Not Enough
 
 Use stronger controls when a task can mutate production systems, process
