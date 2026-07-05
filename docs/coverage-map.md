@@ -1,5 +1,9 @@
 # Coverage Map
 
+Portfolio-level documentation authority and public/private storage rules live in
+the [Documentation Contract](https://github.com/krivonosoff161/krivonosoff161/blob/main/docs/documentation-contract.md).
+This page only maps the coverage and limits of these playbooks.
+
 This repository is intentionally small. It turns recurring LLM and coding-agent
 safety lessons into short task-brief playbooks. It does not enforce policy by
 itself.

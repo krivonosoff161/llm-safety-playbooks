@@ -70,6 +70,11 @@ Stop condition: <when the model should pause and ask>
 For higher-assurance evaluation, use a harness, tests, policy gates, logs, and
 reviewable artifacts. These playbooks are the first layer, not the final layer.
 
+Portfolio-level documentation authority and public/private storage rules live in
+the [Documentation Contract](https://github.com/krivonosoff161/krivonosoff161/blob/main/docs/documentation-contract.md).
+This repository is the lightweight playbook layer, not the benchmark or runtime
+control layer.
+
 For a source-backed view of what these playbooks cover and where they stop, see
 [docs/coverage-map.md](docs/coverage-map.md).
 
