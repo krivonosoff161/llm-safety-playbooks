@@ -1,5 +1,7 @@
 # LLM Safety Playbooks
 
+Portfolio ownership and evidence ceilings: [Security Portfolio module contract](docs/security-portfolio-roadmap.md).
+
 Practical playbooks for making LLM and AI-agent boundaries explicit during
 everyday work.
 

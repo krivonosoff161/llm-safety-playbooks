@@ -1,0 +1,56 @@
+"""Validate the digest-bound Security Portfolio module contract."""
+
+import hashlib
+import json
+from pathlib import Path
+
+
+def main() -> int:
+    root = Path(__file__).resolve().parents[1]
+    contract = json.loads(
+        (root / "docs" / "security-portfolio-roadmap-contract.json").read_text(encoding="utf-8")
+    )
+    if contract["schema_version"] != "SecurityPortfolioLocalContract.v2":
+        raise SystemExit("unsupported contract schema")
+    if contract["repository_id"] != "llm-safety-playbooks":
+        raise SystemExit("wrong repository owner")
+    projection_path = (root / contract["vendored_projection_path"]).resolve()
+    if (
+        root.resolve() not in projection_path.parents
+        or not projection_path.is_file()
+        or projection_path.is_symlink()
+    ):
+        raise SystemExit("unsafe vendored projection path")
+    raw = projection_path.read_bytes()
+    if len(raw) != contract["public_projection_size"]:
+        raise SystemExit("vendored projection size drift")
+    if hashlib.sha256(raw).hexdigest() != contract["public_projection_sha256"]:
+        raise SystemExit("vendored projection digest drift")
+    projection = json.loads(raw)
+    expected = [
+        {"id": item["id"], "status": item["status"]}
+        for item in projection["modules"]
+        if item["owner"] == contract["repository_id"]
+    ]
+    forbidden = sorted(
+        {
+            claim
+            for item in projection["modules"]
+            if item["owner"] == contract["repository_id"]
+            for claim in item["forbidden_claims"]
+        }
+        | {"operational_authority"}
+    )
+    if (
+        projection["authority"] != "none"
+        or contract["owned_modules"] != expected
+        or contract["authority"] != "none"
+    ):
+        raise SystemExit("module ownership or authority drift")
+    if contract["forbidden_promotions"] != forbidden:
+        raise SystemExit("forbidden promotion drift")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
