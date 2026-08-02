@@ -1,6 +1,8 @@
 # Security Portfolio module contract
 
-This repository owns `M16-operator-playbooks`: public human guidance and policy-authoring input. Playbooks do not provide enforcement, runtime isolation, provenance verification, or operational authority.
+This repository owns `M16-operator-playbooks` at `implemented_guidance`: public human
+guidance and policy-authoring input. Playbooks do not provide enforcement, runtime
+isolation, provenance verification, or operational authority.
 
 The vendored [`security-portfolio-roadmap-public.yaml`](security-portfolio-roadmap-public.yaml)
 is the digest-bound public projection. The profile copy is only a publication location.
