@@ -1,4 +1,4 @@
-name: Security Portfolio contract
+name: Security Portfolio contracts
 
 on:
   pull_request:
@@ -17,3 +17,5 @@ jobs:
         with:
           python-version: "3.13"
       - run: python tools/validate_security_portfolio_contract.py
+      - run: python tools/validate_observation_guidance_contract.py
+      - run: python -m unittest discover -s tests -v

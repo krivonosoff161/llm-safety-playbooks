@@ -47,6 +47,7 @@ shared vocabulary for risk, provenance, handoff, and evidence.
 | [Git Agent Safety](../playbooks/git-agent-safety.md) | Agent edits, commits, pushes, or merges without enough review. | Change-control failure, excessive agency, supply-chain integrity. | Issue/branch/PR gates, CI, review rules, protected branches, signed commits or attestations where needed. |
 | [Handoff Verification](../playbooks/handoff-verification.md) | Work moves between agents/humans without source, scope, confidence, or checked/not-checked fields. | Provenance loss, stale context, authority laundering. | Structured handoff files, verifier checks, hash/signature binding, approval records, replayable audit trail. |
 | [Safe Research Scope](../playbooks/safe-research-scope.md) | Security work drifts from synthetic/owned/authorized scope toward live abuse. | Authorized testing boundary, misuse prevention, policy scope. | Explicit target authorization, mock fixtures, no real credentials, no third-party abuse, evidence redaction. |
+| [Canonical Observation Review](../playbooks/canonical-observation-review.md) | Canonical metadata is mistaken for authenticated identity, consent, capability, authority, or an allow receipt. | Provenance ambiguity, authority laundering, missing telemetry, evidence-pointer overclaim. | Exact schema decoder, signed evidence, transfer verifier, access control, runtime policy gate. |
 
 ## What The Playbooks Can Do
 
@@ -94,3 +95,7 @@ Escalation options:
 Each playbook should stay short enough to paste into a real task brief. If a
 topic needs schemas, traces, scoring, or formal proof, it belongs in a verifier
 or benchmark repository, not here.
+
+The canonical-observation playbook is a bounded exception only in that it pins a public owner
+schema and a small machine-readable guidance policy. Its validator protects documentation from
+claim drift; it does not validate live events or enforce policy.

@@ -1,0 +1,44 @@
+{
+  "schema_version": "portfolio-observation-guidance-v1.0",
+  "contract_id": "portfolio-observation-v1.0",
+  "owner_pin_path": "contracts/portfolio-observation.v1.owner-pin.json",
+  "guidance_mode": "human_guidance_only",
+  "required_metadata": [
+    "schema_version",
+    "event_id",
+    "project_id",
+    "repository_id",
+    "repository_sha",
+    "occurred_at",
+    "producer_id_hash",
+    "producer_attestation",
+    "source_surface",
+    "activity",
+    "entity_refs",
+    "parent_event_ids",
+    "data_envelope_ref",
+    "authority_envelope_ref",
+    "telemetry_state",
+    "operational_authority"
+  ],
+  "missing_or_invalid_metadata_disposition": "abstain",
+  "allowed_human_dispositions": [
+    "observe",
+    "challenge",
+    "escalate",
+    "abstain"
+  ],
+  "forbidden_promotions": [
+    "authority",
+    "capability",
+    "consent",
+    "authenticated_identity",
+    "allow_receipt",
+    "producer_attestation"
+  ],
+  "authority_envelope_interpretation": "evidence_pointer_only",
+  "producer_attestation_interpretation": "unattested_only",
+  "human_playbook_path": "playbooks/canonical-observation-review.md",
+  "human_playbook_sha256": "bd2c518c484072804f860d50d4b4ff52c246fafbaac4c7fb87db86aafd2f79f0",
+  "operational_authority": "none"
+}

@@ -53,6 +53,7 @@ That applies to:
 | [Git Agent Safety](playbooks/git-agent-safety.md) | A coding agent may edit files, create branches, push, or prepare a PR. |
 | [Handoff Verification](playbooks/handoff-verification.md) | One agent, model, or human passes work to another. |
 | [Safe Research Scope](playbooks/safe-research-scope.md) | A security-related task needs synthetic, mock, owned, or explicitly authorized boundaries. |
+| [Canonical Observation Review](playbooks/canonical-observation-review.md) | A human reviews a pinned portfolio observation without promoting metadata into authority or an allow decision. |
 
 ## How To Use
 
@@ -71,6 +72,16 @@ Stop condition: <when the model should pause and ask>
 
 For higher-assurance evaluation, use a harness, tests, policy gates, logs, and
 reviewable artifacts. These playbooks are the first layer, not the final layer.
+
+The machine-checkable P1 guidance contract is
+[`contracts/portfolio-observation-guidance.v1.json`](contracts/portfolio-observation-guidance.v1.json).
+Validate its exact owner schema/manifest pins and human-only boundary with:
+
+```text
+python tools/validate_observation_guidance_contract.py
+```
+
+This validation does not authenticate an observation and does not grant operational authority.
 
 Portfolio-level documentation authority and public/private storage rules live in
 the [Documentation Contract](https://github.com/krivonosoff161/krivonosoff161/blob/main/docs/documentation-contract.md).
