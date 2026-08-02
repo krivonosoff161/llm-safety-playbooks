@@ -31,6 +31,15 @@ def main() -> int:
     if hashlib.sha256(raw).hexdigest() != contract["public_projection_sha256"]:
         raise SystemExit("vendored projection digest drift")
     projection = json.loads(raw)
+    if projection["roadmap_version"] != contract["roadmap_version"]:
+        raise SystemExit("roadmap version drift")
+    if projection["source_sha256"] != contract["upstream_private_source_sha256"]:
+        raise SystemExit("private source commitment drift")
+    repository = next(
+        item for item in projection["repositories"] if item["id"] == contract["repository_id"]
+    )
+    if repository["roadmap_authority"] != contract["roadmap_authority"]:
+        raise SystemExit("roadmap authority drift")
     expected = [
         {"id": item["id"], "status": item["status"]}
         for item in projection["modules"]
@@ -53,6 +62,19 @@ def main() -> int:
         raise SystemExit("module ownership or authority drift")
     if contract["forbidden_promotions"] != forbidden:
         raise SystemExit("forbidden promotion drift")
+    if any(
+        projection["status_profiles"][item["status"]]["authority"] != contract["authority"]
+        for item in expected
+    ):
+        raise SystemExit("owned module status profile promotes authority")
+    document = (root / "docs" / "security-portfolio-roadmap.md").read_text(encoding="utf-8")
+    if contract["roadmap_version"] not in document or "`none`" not in document:
+        raise SystemExit("human contract pin drift")
+    if any(
+        item["id"] not in document or item["status"] not in document
+        for item in contract["owned_modules"]
+    ):
+        raise SystemExit("human module status drift")
     return 0
 
 
