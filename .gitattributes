@@ -1,1 +1,8 @@
 docs/security-portfolio-roadmap-* text eol=lf
+contracts/portfolio-observation.v1.schema.json text eol=lf
+contracts/portfolio-observation.v1.manifest.json text eol=lf
+contracts/portfolio-observation.v1.owner-pin.json text eol=lf
+contracts/portfolio-observation-guidance.v1.json text eol=lf
+playbooks/canonical-observation-review.md text eol=lf
+tools/validate_observation_guidance_contract.py text eol=lf
+tests/test_observation_guidance_contract.py text eol=lf
