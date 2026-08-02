@@ -7,6 +7,10 @@ from pathlib import Path
 
 def main() -> int:
     root = Path(__file__).resolve().parents[1]
+    agent_contract = " ".join((root / "AGENTS.md").read_text(encoding="utf-8").split())
+    for phrase in ("main", "codex/*", "never weaken", "separate owner gates", "grant no authority"):
+        if phrase not in agent_contract:
+            raise SystemExit(f"agent authority contract drift: {phrase}")
     contract = json.loads(
         (root / "docs" / "security-portfolio-roadmap-contract.json").read_text(encoding="utf-8")
     )
