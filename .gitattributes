@@ -1,4 +1,7 @@
 docs/security-portfolio-roadmap-* text eol=lf
+component.yaml text eol=lf
+docs/component-roadmap.md text eol=lf
+tests/test_ecosystem_component_contract.py text eol=lf
 contracts/portfolio-observation.v1.schema.json text eol=lf
 contracts/portfolio-observation.v1.manifest.json text eol=lf
 contracts/portfolio-observation.v1.owner-pin.json text eol=lf
