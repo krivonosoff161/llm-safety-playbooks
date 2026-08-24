@@ -30,6 +30,7 @@ OUTPUT_DOMAIN = b"llm-safety-playbooks/policy-output/v1\0"
 INPUT_BYTES_DOMAIN = b"llm-safety-playbooks/policy-input-bytes/v1\0"
 MAX_INPUT_BYTES = 16_384
 MAX_OUTPUT_BYTES = 65_536
+MAX_JSON_DEPTH = 64
 SHA256_HEX_LENGTH = 64
 
 DISPOSITIONS = ("observe", "challenge", "escalate", "abstain")
@@ -532,13 +533,17 @@ def _decode_canonical(raw: bytes, max_bytes: int, label: str) -> dict[str, Any]:
     if type(raw) is not bytes or not raw or len(raw) > max_bytes:
         raise PolicyPackContractError(f"{label} byte size is outside V1")
     try:
+        text = raw.decode("utf-8")
+    except UnicodeDecodeError as exc:
+        raise PolicyPackContractError(f"{label} is not strict UTF-8 JSON") from exc
+    _require_json_depth(text, label)
+    try:
         value = json.loads(
-            raw.decode("utf-8"),
+            text,
             object_pairs_hook=_strict_object,
             parse_constant=_reject_constant,
         )
     except (
-        UnicodeDecodeError,
         json.JSONDecodeError,
         PolicyPackContractError,
         RecursionError,
@@ -549,6 +554,31 @@ def _decode_canonical(raw: bytes, max_bytes: int, label: str) -> dict[str, Any]:
     if _canonical_json(value) + b"\n" != raw:
         raise PolicyPackContractError(f"{label} is not canonical V1 JSON")
     return value
+
+
+def _require_json_depth(text: str, label: str) -> None:
+    """Reject pathological nesting independently of interpreter recursion limits."""
+
+    depth = 0
+    in_string = False
+    escaped = False
+    for character in text:
+        if in_string:
+            if escaped:
+                escaped = False
+            elif character == "\\":
+                escaped = True
+            elif character == '"':
+                in_string = False
+            continue
+        if character == '"':
+            in_string = True
+        elif character in "[{":
+            depth += 1
+            if depth > MAX_JSON_DEPTH:
+                raise PolicyPackContractError(f"{label} exceeds V1 JSON nesting depth")
+        elif character in "]}":
+            depth -= 1
 
 
 def _strict_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:

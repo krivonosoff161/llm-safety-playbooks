@@ -130,7 +130,7 @@ class PolicyPackContractTests(unittest.TestCase):
         with self.assertRaisesRegex(PolicyPackContractError, "byte size"):
             decode_policy_input_v1(b"{" + b"x" * policy_pack.MAX_INPUT_BYTES + b"}\n")
         nested = b'{"value":' + (b"[" * 2000) + b"0" + (b"]" * 2000) + b"}\n"
-        with self.assertRaisesRegex(PolicyPackContractError, "strict UTF-8 JSON"):
+        with self.assertRaisesRegex(PolicyPackContractError, "nesting depth"):
             decode_policy_input_v1(nested)
 
     def test_output_rejects_identity_summary_and_authority_tampering(self) -> None:

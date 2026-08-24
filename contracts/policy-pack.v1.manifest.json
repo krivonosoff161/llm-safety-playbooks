@@ -14,7 +14,7 @@
     "component.yaml": "7c979980ce5359ce45939789cb2c17d8966c748bdb1277526685c2de89749a58",
     "docs/component-roadmap.md": "07bbcc33e5489dd0ca3dae66c0dcf682b4d6a4f1b743693b856d74d9ef964928",
     "docs/coverage-map.md": "85a2364a71436706151a6b843aea122754d2dc1116e9f1a3d300afcb6a8145b8",
-    "docs/policy-pack-v1.md": "aebdae2d8dc925a95b9ad4295e145be21ffda186cb473ba7149549941c9e131f",
+    "docs/policy-pack-v1.md": "2dd96a072883db49f1d3d1fb8fa15b56f1968f120224e6c172bed2a87db0af3b",
     "playbooks/canonical-observation-review.md": "bd2c518c484072804f860d50d4b4ff52c246fafbaac4c7fb87db86aafd2f79f0",
     "playbooks/data-vs-instructions.md": "bf993293a8a4b8340029bdfbc8fa3ee2052450c7a5ad4618143a0b08e44c9298",
     "playbooks/generated-resource-check.md": "3e4884da1b30fcb56b5ebed2cedb5b7f6b652dcabcf3a7221bb331a514fafc95",
@@ -24,8 +24,8 @@
     "playbooks/secret-handling.md": "91f1d24612c787bf93f7d2e4e7c7fb7d129c4a0994ca26da3ea0f5715b4b0618",
     "tests/test_ecosystem_component_contract.py": "aeb8374dad70fce6b300841be15cd36427b9cd3d05723cb0bc09b06c05608e4f",
     "tests/test_observation_guidance_contract.py": "de49c87c59031c40162a940bb95db6928e611f42ef901537a01cbc938adf03ae",
-    "tests/test_policy_pack_contract.py": "78773dcf1c9e23397e6c745a04d35ae03598b1c56ef411e1b8e21cd7c4f8f1dd",
-    "tools/policy_pack.py": "aa40e006557c1724dc3838347dba203dcb7ae78c0b0ee2e2f0ff9916d49d3f5c"
+    "tests/test_policy_pack_contract.py": "19d1c1503bde8da88017519ca39050bef6d432e1d4d3a13fcdcba008a14c662b",
+    "tools/policy_pack.py": "6352309671359d906d619596c15fc243fdb71c45decdd8cfbbde34b9d91a37dd"
   },
   "canonicalization": "utf8-json-sort-keys-compact-lf-v1",
   "may_authorize_effects": false,

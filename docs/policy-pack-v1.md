@@ -18,6 +18,8 @@ raw subject content nor performs an effect.
 All generated JSON shapes are closed. Canonical receipts use sorted compact UTF-8 JSON with one
 LF terminator. Duplicate fields, unknown fields, alternate whitespace, CRLF, missing signals,
 wrong pack bindings, identity drift, and authority promotion fail closed.
+Input receipts are limited to 16,384 bytes and all decoded JSON is limited to 64 structural
+nesting levels, so rejection does not depend on an interpreter-specific recursion limit.
 The pack schema fixes the exact ordered rule set, and the output schema fixes each ordered result
 to its source-owned rule and reviewed playbook digest. The Python codec additionally enforces
 cross-field disposition, match, summary, and content-identity relationships.
