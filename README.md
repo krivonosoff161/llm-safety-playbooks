@@ -13,9 +13,10 @@ The harness measures boundary failures with traces and scorecards. These
 playbooks help users write safer task briefs before a full benchmark or runtime
 control is available.
 
-Today this repository is a standalone declarative guidance pack. It is not yet an
-installable Harness extension, and Harness does not automatically discover or execute its
-content.
+Today this repository is a standalone declarative guidance pack with one executable,
+deterministic offline advisory evaluator. It is not an installable Harness extension, Harness
+does not automatically discover it, and the evaluator does not execute playbook text or enforce
+effects.
 
 ## Core Rule
 
@@ -88,6 +89,31 @@ python tools/validate_observation_guidance_contract.py
 ```
 
 This validation does not authenticate an observation and does not grant operational authority.
+
+## Offline Policy Pack V1
+
+[`Policy Pack V1`](docs/policy-pack-v1.md) maps seven caller-supplied, content-free risk signals
+to `observe / challenge / escalate / abstain` guidance. It reads no prompt, secret, model output,
+or subject content. Both its canonical input and output receipts are digest-bound and fixed to:
+
+```text
+may_authorize_effects = false
+operational_authority = none
+```
+
+Validate the generated pack, schemas, synthetic fixture, documentation, and source bindings:
+
+```text
+python tools/policy_pack.py check
+```
+
+Evaluate the committed synthetic fixture entirely offline:
+
+```text
+python tools/policy_pack.py evaluate tests/fixtures/policy-pack-v1/valid/mixed-signals.json
+```
+
+The output is advice, not a correctness claim, allow decision, permission, or enforcement action.
 
 Public ecosystem ordering and documentation authority live in the Harness-owned
 [ecosystem roadmap](https://github.com/krivonosoff161/agentic-security-harness/blob/main/docs/ecosystem-roadmap.md).

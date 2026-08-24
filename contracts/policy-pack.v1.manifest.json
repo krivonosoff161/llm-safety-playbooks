@@ -1,0 +1,37 @@
+{
+  "artifacts": {
+    "contracts/policy-evaluation-receipt.v1.schema.json": "b5e4d5554fb930529fd493dad903a25698c99c62c57d99934f66edda8b4f6f1c",
+    "contracts/policy-input-receipt.v1.schema.json": "d6a39ad8cb1cfc9e61094fa3c92b11d66b2df3370a326f89ecb4a52c49dd3e8b",
+    "contracts/policy-pack.v1.json": "1c8ca14e6ab83d92742f6fba0b0d1b1bc422ebe30163c6619e9c80f5413b8915",
+    "contracts/policy-pack.v1.schema.json": "fd99422169c4cbfbe0f80a16a39cf7557d7ef6d28669b03ae940b24b9e2172a1",
+    "tests/fixtures/policy-pack-v1/valid/mixed-signals.json": "21373b3b151b451baf8b71ab0a9dd9f8303e9ab6239301b59046dfec2b087040"
+  },
+  "bound_files": {
+    ".gitattributes": "62df1522226a526f7a537b620f327d68528cf428041ed20ac95e5293a552ed19",
+    ".github/workflows/roadmap.yml": "f70f3f5d9fd692ae491d18ac943c5767371acd88a392a53e9bcff98f00f7d225",
+    "AGENTS.md": "08bb12e41d96bddc4128678ec2f6b07681ca84b28b9cb111a362337c568396d6",
+    "README.md": "79d77215739eba6549f4440cac76aabf2b0a46ca2f52711a9156523e36b3e0ed",
+    "component.yaml": "7c979980ce5359ce45939789cb2c17d8966c748bdb1277526685c2de89749a58",
+    "docs/component-roadmap.md": "07bbcc33e5489dd0ca3dae66c0dcf682b4d6a4f1b743693b856d74d9ef964928",
+    "docs/coverage-map.md": "85a2364a71436706151a6b843aea122754d2dc1116e9f1a3d300afcb6a8145b8",
+    "docs/policy-pack-v1.md": "aebdae2d8dc925a95b9ad4295e145be21ffda186cb473ba7149549941c9e131f",
+    "playbooks/canonical-observation-review.md": "bd2c518c484072804f860d50d4b4ff52c246fafbaac4c7fb87db86aafd2f79f0",
+    "playbooks/data-vs-instructions.md": "bf993293a8a4b8340029bdfbc8fa3ee2052450c7a5ad4618143a0b08e44c9298",
+    "playbooks/generated-resource-check.md": "3e4884da1b30fcb56b5ebed2cedb5b7f6b652dcabcf3a7221bb331a514fafc95",
+    "playbooks/git-agent-safety.md": "a5fc7e5ac3c17e7b12dffa0bee026e3b3515e7bf1e3a24e1b8d3c57453b06ca2",
+    "playbooks/handoff-verification.md": "46553384d34f5fa4c13c2d745d9260bc6fc83f2923e280f792ad5c14d9280bec",
+    "playbooks/safe-research-scope.md": "709c4482278af2d2497317352d92e05059b20a0108d11dc108234ab6c791c221",
+    "playbooks/secret-handling.md": "91f1d24612c787bf93f7d2e4e7c7fb7d129c4a0994ca26da3ea0f5715b4b0618",
+    "tests/test_ecosystem_component_contract.py": "aeb8374dad70fce6b300841be15cd36427b9cd3d05723cb0bc09b06c05608e4f",
+    "tests/test_observation_guidance_contract.py": "de49c87c59031c40162a940bb95db6928e611f42ef901537a01cbc938adf03ae",
+    "tests/test_policy_pack_contract.py": "78773dcf1c9e23397e6c745a04d35ae03598b1c56ef411e1b8e21cd7c4f8f1dd",
+    "tools/policy_pack.py": "aa40e006557c1724dc3838347dba203dcb7ae78c0b0ee2e2f0ff9916d49d3f5c"
+  },
+  "canonicalization": "utf8-json-sort-keys-compact-lf-v1",
+  "may_authorize_effects": false,
+  "operational_authority": "none",
+  "pack_id": "llm-safety-playbooks-core",
+  "pack_sha256": "44fa5aced73c6a2fc1eb3cb827955d245c887fa8d7c596e353bb2e9678119169",
+  "schema_version": "llm-safety-policy-pack-manifest-v1.0",
+  "verdict_semantics": "advisory_only_no_allow_or_enforcement"
+}

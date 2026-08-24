@@ -9,14 +9,16 @@ cross-repository phases belong to the
 
 - Kind: `declarative_pack`.
 - Integration: `standalone`.
-- Distribution: Markdown playbooks and a machine-checkable guidance contract; there is no
-  installable Python package or Harness entry point today.
+- Distribution: Markdown playbooks, machine-checkable guidance, and a stdlib-only deterministic
+  offline advisory evaluator; there is no installable Python package or Harness entry point.
 - Platforms: the content supports Linux and Windows workflows. The current documentation
   contract CI records Linux only.
 - Authority: `none`.
 
-The playbooks provide human guidance. They do not execute checks, authenticate provenance,
-isolate a runtime, enforce policy, or establish an allow decision.
+The playbooks provide human guidance. The deterministic offline advisory evaluator accepts only
+closed content-free signal receipts and emits canonical advisory receipts. Neither layer inspects
+raw subject content, authenticates provenance, isolates a runtime, enforces policy, authorizes an
+effect, or establishes an allow decision.
 
 ## Component-owned documents
 
@@ -24,6 +26,10 @@ isolate a runtime, enforce policy, or establish an allow decision.
 - [`coverage-map.md`](coverage-map.md): source vocabulary, coverage, and control limits.
 - [`../playbooks/`](../playbooks/): the human guidance corpus.
 - [`../contracts/portfolio-observation-guidance.v1.json`](../contracts/portfolio-observation-guidance.v1.json): bounded machine-checkable review guidance.
+- [`policy-pack-v1.md`](policy-pack-v1.md): executable contract, threat boundaries, canonical
+  receipts, and offline use.
+- [`../contracts/policy-pack.v1.manifest.json`](../contracts/policy-pack.v1.manifest.json):
+  generated schema/source/playbook bindings for the pack.
 
 ## Historical portfolio snapshots
 
@@ -39,9 +45,9 @@ ecosystem roadmap; this repository owns only its guidance component facts.
 
 ## Ordered next gates
 
-1. Define the declarative-pack contract in the Harness Extension SDK.
+1. Review the source-owned Policy Pack V1 against the Harness declarative-pack contract without
+   granting discovery or execution authority.
 2. Decide whether the pack remains repository-distributed or becomes a data-only package.
-3. Add offline conformance fixtures for pack discovery without executing playbook text.
-4. Record Linux and Windows contract tests before claiming cross-platform suite verification.
+3. Add Harness-side discovery conformance that treats pack text and receipts only as data.
+4. Keep Linux and Windows contract matrices green across the declared Python range.
 5. Promote integration beyond `standalone` only after a real Harness conformance test exists.
-
