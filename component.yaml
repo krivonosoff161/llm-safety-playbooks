@@ -1,0 +1,59 @@
+{
+  "schema_version": "AgenticSecurityEcosystemComponent.v1",
+  "component_id": "llm-safety-playbooks",
+  "display_name": "LLM Safety Playbooks",
+  "repository": "https://github.com/krivonosoff161/llm-safety-playbooks",
+  "visibility": "public",
+  "kind": "declarative_pack",
+  "summary": "Human-readable defensive guidance and a bounded machine-checkable review contract; it does not execute or enforce security policy.",
+  "package": {
+    "name": null,
+    "version": null,
+    "install": null,
+    "entry_points": []
+  },
+  "owns": {
+    "modules": ["operator-playbooks"],
+    "checks": [],
+    "collectors": [],
+    "adapters": [],
+    "contracts": ["portfolio-observation-guidance-v1"]
+  },
+  "consumes": ["optional canonical observation contract for human review guidance"],
+  "contracts": [
+    {"id": "component-manifest", "version": "1", "direction": "consumes", "required": false},
+    {"id": "portfolio-observation", "version": "1", "direction": "consumes", "required": false},
+    {"id": "portfolio-observation-guidance", "version": "1", "direction": "provides", "required": false}
+  ],
+  "docs": [
+    {"path": "README.md", "role": "component-front-door"},
+    {"path": "docs/component-roadmap.md", "role": "component-owned"},
+    {"path": "docs/coverage-map.md", "role": "component-owned"},
+    {"path": "docs/security-portfolio-roadmap.md", "role": "historical"},
+    {"path": "docs/security-portfolio-roadmap-public.yaml", "role": "historical"},
+    {"path": "docs/security-portfolio-roadmap-contract.json", "role": "historical"}
+  ],
+  "compatibility": {
+    "harness_api": "not-applicable",
+    "python": "not-applicable",
+    "platforms": {"supported": ["linux", "windows"], "tested": ["linux"]}
+  },
+  "integration_status": "standalone",
+  "evidence_refs": [
+    "docs/coverage-map.md",
+    "contracts/portfolio-observation-guidance.v1.json",
+    ".github/workflows/roadmap.yml"
+  ],
+  "claims": [
+    "human-readable defensive task guidance",
+    "bounded machine-checkable canonical observation review guidance"
+  ],
+  "non_claims": [
+    "security enforcement",
+    "runtime isolation",
+    "provenance authentication",
+    "operational authority",
+    "installable Harness extension"
+  ],
+  "authority": "none"
+}

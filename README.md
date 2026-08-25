@@ -1,6 +1,8 @@
 # LLM Safety Playbooks
 
-Portfolio ownership and evidence ceilings: [Security Portfolio module contract](docs/security-portfolio-roadmap.md).
+Ecosystem role and current integration status: [component roadmap](docs/component-roadmap.md).
+The public cross-repository plan is owned by the
+[Agentic Security Harness ecosystem roadmap](https://github.com/krivonosoff161/agentic-security-harness/blob/main/docs/ecosystem-roadmap.md).
 
 Practical playbooks for making LLM and AI-agent boundaries explicit during
 everyday work.
@@ -10,6 +12,10 @@ This repository is the lightweight companion to
 The harness measures boundary failures with traces and scorecards. These
 playbooks help users write safer task briefs before a full benchmark or runtime
 control is available.
+
+Today this repository is a standalone declarative guidance pack. It is not yet an
+installable Harness extension, and Harness does not automatically discover or execute its
+content.
 
 ## Core Rule
 
@@ -83,10 +89,10 @@ python tools/validate_observation_guidance_contract.py
 
 This validation does not authenticate an observation and does not grant operational authority.
 
-Portfolio-level documentation authority and public/private storage rules live in
-the [Documentation Contract](https://github.com/krivonosoff161/krivonosoff161/blob/main/docs/documentation-contract.md).
-This repository is the lightweight playbook layer, not the benchmark or runtime
-control layer.
+Public ecosystem ordering and documentation authority live in the Harness-owned
+[ecosystem roadmap](https://github.com/krivonosoff161/agentic-security-harness/blob/main/docs/ecosystem-roadmap.md).
+The profile repository is a generated navigation surface. This repository owns only the
+lightweight playbook layer, not the benchmark or runtime control layer.
 
 For a source-backed view of what these playbooks cover and where they stop, see
 [docs/coverage-map.md](docs/coverage-map.md).
@@ -108,6 +114,8 @@ Stronger controls include:
 
 ## Related Projects
 
+- [Component roadmap](docs/component-roadmap.md)
+  - source-owned status, platform evidence, historical projections, and next gates.
 - [agentic-security-harness](https://github.com/krivonosoff161/agentic-security-harness)
   - trace-first benchmark for agentic AI boundary failures.
 - [agentic-transfer-verifier](https://github.com/krivonosoff161/agentic-transfer-verifier)
