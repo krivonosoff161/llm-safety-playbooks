@@ -1,0 +1,562 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "input_receipt_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "input_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "may_authorize_effects": {
+      "const": false
+    },
+    "operational_authority": {
+      "const": "none"
+    },
+    "overall_advisory_disposition": {
+      "enum": [
+        "observe",
+        "challenge",
+        "escalate",
+        "abstain"
+      ]
+    },
+    "pack_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "receipt_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "results": {
+      "items": false,
+      "maxItems": 7,
+      "minItems": 7,
+      "prefixItems": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "advisory_disposition": {
+              "enum": [
+                "observe",
+                "challenge",
+                "escalate",
+                "abstain"
+              ]
+            },
+            "matched": {
+              "type": "boolean"
+            },
+            "may_authorize_effects": {
+              "const": false
+            },
+            "operational_authority": {
+              "const": "none"
+            },
+            "playbook_path": {
+              "const": "playbooks/data-vs-instructions.md"
+            },
+            "playbook_sha256": {
+              "const": "bf993293a8a4b8340029bdfbc8fa3ee2052450c7a5ad4618143a0b08e44c9298"
+            },
+            "reason_codes": {
+              "items": {
+                "pattern": "^policy\\.untrusted-instructions-v1\\.(?:absent|present|unknown)$",
+                "type": "string"
+              },
+              "maxItems": 1,
+              "minItems": 1,
+              "type": "array"
+            },
+            "rule_id": {
+              "const": "untrusted-instructions-v1"
+            },
+            "signal": {
+              "const": "untrusted_instructions_detected"
+            },
+            "signal_state": {
+              "enum": [
+                "absent",
+                "present",
+                "unknown"
+              ]
+            }
+          },
+          "required": [
+            "rule_id",
+            "signal",
+            "signal_state",
+            "matched",
+            "advisory_disposition",
+            "reason_codes",
+            "playbook_path",
+            "playbook_sha256",
+            "may_authorize_effects",
+            "operational_authority"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "advisory_disposition": {
+              "enum": [
+                "observe",
+                "challenge",
+                "escalate",
+                "abstain"
+              ]
+            },
+            "matched": {
+              "type": "boolean"
+            },
+            "may_authorize_effects": {
+              "const": false
+            },
+            "operational_authority": {
+              "const": "none"
+            },
+            "playbook_path": {
+              "const": "playbooks/secret-handling.md"
+            },
+            "playbook_sha256": {
+              "const": "91f1d24612c787bf93f7d2e4e7c7fb7d129c4a0994ca26da3ea0f5715b4b0618"
+            },
+            "reason_codes": {
+              "items": {
+                "pattern": "^policy\\.secret-exposure-v1\\.(?:absent|present|unknown)$",
+                "type": "string"
+              },
+              "maxItems": 1,
+              "minItems": 1,
+              "type": "array"
+            },
+            "rule_id": {
+              "const": "secret-exposure-v1"
+            },
+            "signal": {
+              "const": "secret_exposure_risk"
+            },
+            "signal_state": {
+              "enum": [
+                "absent",
+                "present",
+                "unknown"
+              ]
+            }
+          },
+          "required": [
+            "rule_id",
+            "signal",
+            "signal_state",
+            "matched",
+            "advisory_disposition",
+            "reason_codes",
+            "playbook_path",
+            "playbook_sha256",
+            "may_authorize_effects",
+            "operational_authority"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "advisory_disposition": {
+              "enum": [
+                "observe",
+                "challenge",
+                "escalate",
+                "abstain"
+              ]
+            },
+            "matched": {
+              "type": "boolean"
+            },
+            "may_authorize_effects": {
+              "const": false
+            },
+            "operational_authority": {
+              "const": "none"
+            },
+            "playbook_path": {
+              "const": "playbooks/generated-resource-check.md"
+            },
+            "playbook_sha256": {
+              "const": "3e4884da1b30fcb56b5ebed2cedb5b7f6b652dcabcf3a7221bb331a514fafc95"
+            },
+            "reason_codes": {
+              "items": {
+                "pattern": "^policy\\.generated-resource-v1\\.(?:absent|present|unknown)$",
+                "type": "string"
+              },
+              "maxItems": 1,
+              "minItems": 1,
+              "type": "array"
+            },
+            "rule_id": {
+              "const": "generated-resource-v1"
+            },
+            "signal": {
+              "const": "generated_resource_unverified"
+            },
+            "signal_state": {
+              "enum": [
+                "absent",
+                "present",
+                "unknown"
+              ]
+            }
+          },
+          "required": [
+            "rule_id",
+            "signal",
+            "signal_state",
+            "matched",
+            "advisory_disposition",
+            "reason_codes",
+            "playbook_path",
+            "playbook_sha256",
+            "may_authorize_effects",
+            "operational_authority"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "advisory_disposition": {
+              "enum": [
+                "observe",
+                "challenge",
+                "escalate",
+                "abstain"
+              ]
+            },
+            "matched": {
+              "type": "boolean"
+            },
+            "may_authorize_effects": {
+              "const": false
+            },
+            "operational_authority": {
+              "const": "none"
+            },
+            "playbook_path": {
+              "const": "playbooks/git-agent-safety.md"
+            },
+            "playbook_sha256": {
+              "const": "a5fc7e5ac3c17e7b12dffa0bee026e3b3515e7bf1e3a24e1b8d3c57453b06ca2"
+            },
+            "reason_codes": {
+              "items": {
+                "pattern": "^policy\\.git-change-control-v1\\.(?:absent|present|unknown)$",
+                "type": "string"
+              },
+              "maxItems": 1,
+              "minItems": 1,
+              "type": "array"
+            },
+            "rule_id": {
+              "const": "git-change-control-v1"
+            },
+            "signal": {
+              "const": "git_change_control_unclear"
+            },
+            "signal_state": {
+              "enum": [
+                "absent",
+                "present",
+                "unknown"
+              ]
+            }
+          },
+          "required": [
+            "rule_id",
+            "signal",
+            "signal_state",
+            "matched",
+            "advisory_disposition",
+            "reason_codes",
+            "playbook_path",
+            "playbook_sha256",
+            "may_authorize_effects",
+            "operational_authority"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "advisory_disposition": {
+              "enum": [
+                "observe",
+                "challenge",
+                "escalate",
+                "abstain"
+              ]
+            },
+            "matched": {
+              "type": "boolean"
+            },
+            "may_authorize_effects": {
+              "const": false
+            },
+            "operational_authority": {
+              "const": "none"
+            },
+            "playbook_path": {
+              "const": "playbooks/handoff-verification.md"
+            },
+            "playbook_sha256": {
+              "const": "46553384d34f5fa4c13c2d745d9260bc6fc83f2923e280f792ad5c14d9280bec"
+            },
+            "reason_codes": {
+              "items": {
+                "pattern": "^policy\\.handoff-verification-v1\\.(?:absent|present|unknown)$",
+                "type": "string"
+              },
+              "maxItems": 1,
+              "minItems": 1,
+              "type": "array"
+            },
+            "rule_id": {
+              "const": "handoff-verification-v1"
+            },
+            "signal": {
+              "const": "handoff_verification_incomplete"
+            },
+            "signal_state": {
+              "enum": [
+                "absent",
+                "present",
+                "unknown"
+              ]
+            }
+          },
+          "required": [
+            "rule_id",
+            "signal",
+            "signal_state",
+            "matched",
+            "advisory_disposition",
+            "reason_codes",
+            "playbook_path",
+            "playbook_sha256",
+            "may_authorize_effects",
+            "operational_authority"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "advisory_disposition": {
+              "enum": [
+                "observe",
+                "challenge",
+                "escalate",
+                "abstain"
+              ]
+            },
+            "matched": {
+              "type": "boolean"
+            },
+            "may_authorize_effects": {
+              "const": false
+            },
+            "operational_authority": {
+              "const": "none"
+            },
+            "playbook_path": {
+              "const": "playbooks/safe-research-scope.md"
+            },
+            "playbook_sha256": {
+              "const": "709c4482278af2d2497317352d92e05059b20a0108d11dc108234ab6c791c221"
+            },
+            "reason_codes": {
+              "items": {
+                "pattern": "^policy\\.research-authorization-v1\\.(?:absent|present|unknown)$",
+                "type": "string"
+              },
+              "maxItems": 1,
+              "minItems": 1,
+              "type": "array"
+            },
+            "rule_id": {
+              "const": "research-authorization-v1"
+            },
+            "signal": {
+              "const": "research_authorization_unclear"
+            },
+            "signal_state": {
+              "enum": [
+                "absent",
+                "present",
+                "unknown"
+              ]
+            }
+          },
+          "required": [
+            "rule_id",
+            "signal",
+            "signal_state",
+            "matched",
+            "advisory_disposition",
+            "reason_codes",
+            "playbook_path",
+            "playbook_sha256",
+            "may_authorize_effects",
+            "operational_authority"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "advisory_disposition": {
+              "enum": [
+                "observe",
+                "challenge",
+                "escalate",
+                "abstain"
+              ]
+            },
+            "matched": {
+              "type": "boolean"
+            },
+            "may_authorize_effects": {
+              "const": false
+            },
+            "operational_authority": {
+              "const": "none"
+            },
+            "playbook_path": {
+              "const": "playbooks/canonical-observation-review.md"
+            },
+            "playbook_sha256": {
+              "const": "bd2c518c484072804f860d50d4b4ff52c246fafbaac4c7fb87db86aafd2f79f0"
+            },
+            "reason_codes": {
+              "items": {
+                "pattern": "^policy\\.observation-metadata-v1\\.(?:absent|present|unknown)$",
+                "type": "string"
+              },
+              "maxItems": 1,
+              "minItems": 1,
+              "type": "array"
+            },
+            "rule_id": {
+              "const": "observation-metadata-v1"
+            },
+            "signal": {
+              "const": "observation_metadata_invalid"
+            },
+            "signal_state": {
+              "enum": [
+                "absent",
+                "present",
+                "unknown"
+              ]
+            }
+          },
+          "required": [
+            "rule_id",
+            "signal",
+            "signal_state",
+            "matched",
+            "advisory_disposition",
+            "reason_codes",
+            "playbook_path",
+            "playbook_sha256",
+            "may_authorize_effects",
+            "operational_authority"
+          ],
+          "type": "object"
+        }
+      ],
+      "type": "array"
+    },
+    "schema_version": {
+      "const": "llm-safety-policy-evaluation-receipt-v1.0"
+    },
+    "summary": {
+      "additionalProperties": false,
+      "properties": {
+        "absent": {
+          "maximum": 7,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "abstain": {
+          "maximum": 7,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "challenge": {
+          "maximum": 7,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "escalate": {
+          "maximum": 7,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "observe": {
+          "maximum": 7,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "present": {
+          "maximum": 7,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "signal_count": {
+          "maximum": 7,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "unknown": {
+          "maximum": 7,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "signal_count",
+        "absent",
+        "present",
+        "unknown",
+        "observe",
+        "challenge",
+        "escalate",
+        "abstain"
+      ],
+      "type": "object"
+    },
+    "verdict_semantics": {
+      "const": "advisory_only_no_allow_or_enforcement"
+    }
+  },
+  "required": [
+    "schema_version",
+    "receipt_id",
+    "input_receipt_id",
+    "input_sha256",
+    "pack_sha256",
+    "results",
+    "summary",
+    "overall_advisory_disposition",
+    "verdict_semantics",
+    "may_authorize_effects",
+    "operational_authority"
+  ],
+  "title": "LLM Safety Policy Evaluation Receipt V1",
+  "type": "object"
+}

@@ -5,7 +5,7 @@
   "repository": "https://github.com/krivonosoff161/llm-safety-playbooks",
   "visibility": "public",
   "kind": "declarative_pack",
-  "summary": "Human-readable defensive guidance and a bounded machine-checkable review contract; it does not execute or enforce security policy.",
+  "summary": "Human-readable defensive guidance plus a deterministic offline advisory policy pack; it does not inspect raw content, execute effects, or enforce security policy.",
   "package": {
     "name": null,
     "version": null,
@@ -14,39 +14,47 @@
   },
   "owns": {
     "modules": ["operator-playbooks"],
-    "checks": [],
+    "checks": ["offline-policy-pack-evaluator"],
     "collectors": [],
     "adapters": [],
-    "contracts": ["portfolio-observation-guidance-v1"]
+    "contracts": ["portfolio-observation-guidance-v1", "policy-pack-v1", "policy-input-receipt-v1", "policy-evaluation-receipt-v1"]
   },
   "consumes": ["optional canonical observation contract for human review guidance"],
   "contracts": [
     {"id": "component-manifest", "version": "1", "direction": "consumes", "required": false},
     {"id": "portfolio-observation", "version": "1", "direction": "consumes", "required": false},
-    {"id": "portfolio-observation-guidance", "version": "1", "direction": "provides", "required": false}
+    {"id": "portfolio-observation-guidance", "version": "1", "direction": "provides", "required": false},
+    {"id": "policy-pack", "version": "1", "direction": "provides", "required": false},
+    {"id": "policy-input-receipt", "version": "1", "direction": "provides", "required": false},
+    {"id": "policy-evaluation-receipt", "version": "1", "direction": "provides", "required": false}
   ],
   "docs": [
     {"path": "README.md", "role": "component-front-door"},
     {"path": "docs/component-roadmap.md", "role": "component-owned"},
     {"path": "docs/coverage-map.md", "role": "component-owned"},
+    {"path": "docs/policy-pack-v1.md", "role": "component-owned"},
     {"path": "docs/security-portfolio-roadmap.md", "role": "historical"},
     {"path": "docs/security-portfolio-roadmap-public.yaml", "role": "historical"},
     {"path": "docs/security-portfolio-roadmap-contract.json", "role": "historical"}
   ],
   "compatibility": {
     "harness_api": "not-applicable",
-    "python": "not-applicable",
-    "platforms": {"supported": ["linux", "windows"], "tested": ["linux"]}
+    "python": ">=3.9",
+    "platforms": {"supported": ["linux", "windows"], "tested": ["linux", "windows"]}
   },
   "integration_status": "standalone",
   "evidence_refs": [
     "docs/coverage-map.md",
     "contracts/portfolio-observation-guidance.v1.json",
+    "contracts/policy-pack.v1.manifest.json",
+    "tools/policy_pack.py",
+    "docs/policy-pack-v1.md",
     ".github/workflows/roadmap.yml"
   ],
   "claims": [
     "human-readable defensive task guidance",
-    "bounded machine-checkable canonical observation review guidance"
+    "bounded machine-checkable canonical observation review guidance",
+    "deterministic offline content-free advisory policy evaluation"
   ],
   "non_claims": [
     "security enforcement",

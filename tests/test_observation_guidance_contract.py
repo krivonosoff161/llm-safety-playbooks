@@ -91,10 +91,8 @@ class ObservationGuidanceContractTests(unittest.TestCase):
             with self.subTest(addition=addition):
                 with self._copy_contract() as copy:
                     path = copy / "playbooks" / "canonical-observation-review.md"
-                    path.write_text(
-                        path.read_text(encoding="utf-8") + addition,
-                        encoding="utf-8",
-                        newline="\n",
+                    path.write_bytes(
+                        (path.read_text(encoding="utf-8") + addition).encode("utf-8")
                     )
                     with self.assertRaisesRegex(GuidanceContractError, "content drift"):
                         validate(copy)
@@ -111,7 +109,7 @@ class ObservationGuidanceContractTests(unittest.TestCase):
 
     @staticmethod
     def _write_json(path: Path, value: object) -> None:
-        path.write_text(json.dumps(value, indent=2) + "\n", encoding="utf-8", newline="\n")
+        path.write_bytes((json.dumps(value, indent=2) + "\n").encode("utf-8"))
 
 
 class _TemporaryContract:

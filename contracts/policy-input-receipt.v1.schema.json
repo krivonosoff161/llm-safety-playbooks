@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "digest_is_authentication": {
+      "const": false
+    },
+    "input_receipt_id": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "may_authorize_effects": {
+      "const": false
+    },
+    "operational_authority": {
+      "const": "none"
+    },
+    "pack_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "raw_content_included": {
+      "const": false
+    },
+    "schema_version": {
+      "const": "llm-safety-policy-input-receipt-v1.0"
+    },
+    "signals": {
+      "additionalProperties": false,
+      "properties": {
+        "generated_resource_unverified": {
+          "enum": [
+            "absent",
+            "present",
+            "unknown"
+          ]
+        },
+        "git_change_control_unclear": {
+          "enum": [
+            "absent",
+            "present",
+            "unknown"
+          ]
+        },
+        "handoff_verification_incomplete": {
+          "enum": [
+            "absent",
+            "present",
+            "unknown"
+          ]
+        },
+        "observation_metadata_invalid": {
+          "enum": [
+            "absent",
+            "present",
+            "unknown"
+          ]
+        },
+        "research_authorization_unclear": {
+          "enum": [
+            "absent",
+            "present",
+            "unknown"
+          ]
+        },
+        "secret_exposure_risk": {
+          "enum": [
+            "absent",
+            "present",
+            "unknown"
+          ]
+        },
+        "untrusted_instructions_detected": {
+          "enum": [
+            "absent",
+            "present",
+            "unknown"
+          ]
+        }
+      },
+      "required": [
+        "untrusted_instructions_detected",
+        "secret_exposure_risk",
+        "generated_resource_unverified",
+        "git_change_control_unclear",
+        "handoff_verification_incomplete",
+        "research_authorization_unclear",
+        "observation_metadata_invalid"
+      ],
+      "type": "object"
+    },
+    "source_class": {
+      "enum": [
+        "synthetic_fixture",
+        "sanitized_metadata",
+        "external_adapter_receipt"
+      ]
+    },
+    "subject_digest_semantics": {
+      "const": "caller_supplied_sanitized_subject_commitment"
+    },
+    "subject_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "input_receipt_id",
+    "pack_sha256",
+    "subject_sha256",
+    "subject_digest_semantics",
+    "source_class",
+    "signals",
+    "raw_content_included",
+    "digest_is_authentication",
+    "may_authorize_effects",
+    "operational_authority"
+  ],
+  "title": "LLM Safety Policy Input Receipt V1",
+  "type": "object"
+}

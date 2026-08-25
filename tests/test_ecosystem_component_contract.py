@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import unittest
 from pathlib import Path
 
 
@@ -55,7 +56,22 @@ def test_component_manifest_is_closed_and_truthful() -> None:
     platforms = compatibility["platforms"]
     assert isinstance(platforms, dict)
     assert set(platforms["tested"]) <= set(platforms["supported"])
-    assert platforms == {"supported": ["linux", "windows"], "tested": ["linux"]}
+    assert compatibility["python"] == ">=3.9"
+    assert platforms == {
+        "supported": ["linux", "windows"],
+        "tested": ["linux", "windows"],
+    }
+    contracts = manifest["contracts"]
+    assert isinstance(contracts, list)
+    assert all(item["direction"] in {"provides", "consumes"} for item in contracts)
+    assert {
+        item["id"] for item in contracts if item["direction"] == "provides"
+    } >= {
+        "portfolio-observation-guidance",
+        "policy-pack",
+        "policy-input-receipt",
+        "policy-evaluation-receipt",
+    }
 
 
 def test_document_roles_exist_and_preserve_historical_snapshots() -> None:
@@ -76,7 +92,18 @@ def test_front_door_points_to_component_and_ecosystem_roadmaps() -> None:
     assert "agentic-security-harness/blob/main/docs/ecosystem-roadmap.md" in readme
     assert "standalone declarative guidance pack" in readme
     assert "Historical portfolio snapshots" in roadmap
-    assert "does not execute or enforce security policy" in (ROOT / "component.yaml").read_text(
-        encoding="utf-8"
-    )
+    assert "deterministic offline advisory evaluator" in roadmap
+    component = (ROOT / "component.yaml").read_text(encoding="utf-8")
+    assert "does not inspect raw content" in component
+    assert "enforce security policy" in component
 
+
+class EcosystemComponentContractTests(unittest.TestCase):
+    def test_closed_and_truthful_manifest(self) -> None:
+        test_component_manifest_is_closed_and_truthful()
+
+    def test_document_roles_and_history(self) -> None:
+        test_document_roles_exist_and_preserve_historical_snapshots()
+
+    def test_front_door_and_roadmaps(self) -> None:
+        test_front_door_points_to_component_and_ecosystem_roadmaps()

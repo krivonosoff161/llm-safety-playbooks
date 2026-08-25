@@ -56,6 +56,7 @@ shared vocabulary for risk, provenance, handoff, and evidence.
 - Create a short stop condition for ambiguous authority.
 - Improve reviewability of LLM-assisted work.
 - Provide reusable wording for issue, branch, PR, and handoff workflows.
+- Deterministically map seven caller-supplied content-free risk signals to advisory dispositions.
 
 ## What They Cannot Do
 
@@ -65,6 +66,8 @@ shared vocabulary for risk, provenance, handoff, and evidence.
 - Validate provenance by themselves.
 - Detect every malicious or stale input.
 - Turn untrusted third-party systems into authorized targets.
+- Infer risk signals from raw prompts, logs, model output, secrets, or subject content.
+- Enforce, approve, block, execute, authenticate, or authorize an effect.
 
 ## When To Escalate Beyond A Playbook
 
@@ -96,6 +99,8 @@ Each playbook should stay short enough to paste into a real task brief. If a
 topic needs schemas, traces, scoring, or formal proof, it belongs in a verifier
 or benchmark repository, not here.
 
-The canonical-observation playbook is a bounded exception only in that it pins a public owner
-schema and a small machine-readable guidance policy. Its validator protects documentation from
-claim drift; it does not validate live events or enforce policy.
+The canonical-observation playbook and Policy Pack V1 are bounded machine-readable exceptions.
+The observation contract pins public owner metadata. The policy pack consumes only explicit
+content-free signal states supplied by a caller; it does not derive those states from content.
+Their validators protect contract and documentation integrity. They do not validate live events,
+prove signal correctness, authenticate callers, authorize effects, or enforce policy.
