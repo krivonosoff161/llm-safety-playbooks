@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-safety-playbooks"
+version = "0.1.0"
+description = "Data-only defensive playbooks and canonical offline advisory policy pack."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+authors = [{ name = "Dmitry Krivonosov" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "build>=1.2.2",
+    "pytest>=8",
+    "ruff>=0.8",
+    "setuptools>=77",
+    "wheel>=0.44",
+]
+
+[project.urls]
+Homepage = "https://github.com/krivonosoff161/llm-safety-playbooks"
+Repository = "https://github.com/krivonosoff161/llm-safety-playbooks"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+llm_safety_playbooks = ["data/*.json", "py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

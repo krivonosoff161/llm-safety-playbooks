@@ -10,7 +10,6 @@ import tempfile
 import unittest
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 
@@ -139,7 +138,12 @@ class PolicyPackContractTests(unittest.TestCase):
             (lambda value: value.__setitem__("receipt_id", "0" * 64), "identity"),
             (lambda value: value["summary"].__setitem__("observe", 0), "summary"),
             (lambda value: value.__setitem__("may_authorize_effects", True), "authorize"),
-            (lambda value: value["results"][0].__setitem__("operational_authority", "execute"), "authority"),
+            (
+                lambda value: value["results"][0].__setitem__(
+                    "operational_authority", "execute"
+                ),
+                "authority",
+            ),
         ):
             payload = json.loads(output_bytes)
             mutation(payload)

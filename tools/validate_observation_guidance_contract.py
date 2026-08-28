@@ -99,7 +99,13 @@ def validate(root: Path) -> None:
         raise GuidanceContractError("owner schema promotes producer attestation")
     if any(
         promoted in properties
-        for promoted in ("authority", "capability", "consent", "authenticated_identity", "allow_receipt")
+        for promoted in (
+            "authority",
+            "capability",
+            "consent",
+            "authenticated_identity",
+            "allow_receipt",
+        )
     ):
         raise GuidanceContractError("owner observation exposes a forbidden promotion field")
 

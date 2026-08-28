@@ -9,8 +9,9 @@ cross-repository phases belong to the
 
 - Kind: `declarative_pack`.
 - Integration: `standalone`.
-- Distribution: Markdown playbooks, machine-checkable guidance, and a stdlib-only deterministic
-  offline advisory evaluator; there is no installable Python package or Harness entry point.
+- Distribution: Markdown playbooks, machine-checkable guidance, a stdlib-only deterministic
+  offline advisory evaluator, and a source-buildable data-only Python wheel. The wheel has no
+  Harness entry point and is not yet published.
 - Platforms: the content supports Linux and Windows workflows. The current documentation
   contract CI records Linux only.
 - Authority: `none`.
@@ -47,7 +48,9 @@ ecosystem roadmap; this repository owns only its guidance component facts.
 
 1. Review the source-owned Policy Pack V1 against the Harness declarative-pack contract without
    granting discovery or execution authority.
-2. Decide whether the pack remains repository-distributed or becomes a data-only package.
-3. Add Harness-side discovery conformance that treats pack text and receipts only as data.
+2. **Source package candidate complete.** Build a wheel containing the exact canonical pack
+   bytes, verify its closed file set, and smoke-install it without dependencies.
+3. Add Harness-side optional-dependency conformance that treats pack bytes and receipts only as
+   data; no entry-point discovery or playbook execution is permitted.
 4. Keep Linux and Windows contract matrices green across the declared Python range.
 5. Promote integration beyond `standalone` only after a real Harness conformance test exists.

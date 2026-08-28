@@ -14,9 +14,31 @@ playbooks help users write safer task briefs before a full benchmark or runtime
 control is available.
 
 Today this repository is a standalone declarative guidance pack with one executable,
-deterministic offline advisory evaluator. It is not an installable Harness extension, Harness
-does not automatically discover it, and the evaluator does not execute playbook text or enforce
-effects.
+deterministic offline advisory evaluator. The current source tree also builds a
+data-only `llm-safety-playbooks` wheel containing the exact canonical Policy Pack V1 bytes. It is not yet
+published, is not a code-loading Harness extension, and Harness does not automatically discover
+or execute it.
+
+## Installable data package
+
+Build and install the source candidate:
+
+```text
+python -m build
+python -m pip install dist/llm_safety_playbooks-0.1.0-py3-none-any.whl
+```
+
+The installed API exposes only verified canonical bytes:
+
+```python
+from llm_safety_playbooks import policy_pack_bytes
+
+pack = policy_pack_bytes()
+```
+
+Importing the package does not load entry points, execute Markdown, inspect content, call a
+provider, or authorize an effect. PyPI publication and inclusion in a Harness optional-dependency
+group remain separate release gates.
 
 ## Core Rule
 
