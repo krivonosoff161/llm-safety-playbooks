@@ -8,8 +8,8 @@
     "tests/fixtures/policy-pack-v1/valid/mixed-signals.json": "21373b3b151b451baf8b71ab0a9dd9f8303e9ab6239301b59046dfec2b087040"
   },
   "bound_files": {
-    ".gitattributes": "f408ee3b93fdfae25fd849412f0c790f46ecc08eb41f0796989f715935731e55",
-    ".github/workflows/roadmap.yml": "c5a8743a5a6de10f4a83636db4a03986af22936ce95f8177683bf23996e1b9aa",
+    ".gitattributes": "01887c590668bcf9256c2d569d36d8da0fc352d1d5d0598e01a039427144eb91",
+    ".github/workflows/roadmap.yml": "dae4cc87f05f46f33fbee2d1390430107e76f10fa7ba44e03865f5edde5f3159",
     "AGENTS.md": "08bb12e41d96bddc4128678ec2f6b07681ca84b28b9cb111a362337c568396d6",
     "MANIFEST.in": "0f47833ec09b27dcfc92bab1ead42bfe902b5c9574b6b9704f887fd4c0409266",
     "README.md": "635774802dc71b052e62b902969be75361362a8b683c0d4a03e2097eeeb2fd28",
