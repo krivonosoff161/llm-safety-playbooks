@@ -98,6 +98,17 @@ def test_front_door_points_to_component_and_ecosystem_roadmaps() -> None:
     assert "enforce security policy" in component
 
 
+def test_install_docs_distinguish_source_extra_from_public_packages() -> None:
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    pack = (ROOT / "docs" / "policy-pack-v1.md").read_text(encoding="utf-8")
+
+    for text in (readme, pack):
+        assert "Harness `main`" in text
+        assert "published Harness `v1.3.0` metadata does not contain" in text
+    assert "Public `pip install agentic-security-harness[playbooks]` support" in readme
+    assert "does not load entry points" in readme
+
+
 class EcosystemComponentContractTests(unittest.TestCase):
     def test_closed_and_truthful_manifest(self) -> None:
         test_component_manifest_is_closed_and_truthful()
@@ -107,3 +118,6 @@ class EcosystemComponentContractTests(unittest.TestCase):
 
     def test_front_door_and_roadmaps(self) -> None:
         test_front_door_points_to_component_and_ecosystem_roadmaps()
+
+    def test_source_and_public_install_boundary(self) -> None:
+        test_install_docs_distinguish_source_extra_from_public_packages()

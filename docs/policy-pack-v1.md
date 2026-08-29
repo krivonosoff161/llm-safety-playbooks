@@ -93,5 +93,7 @@ the exact packaged `policy-pack.v1.json` bytes only after checking the reviewed 
 The wheel declares no console script or Harness extension entry point and has no runtime
 dependencies. Installing it does not execute playbook text or activate the Harness adapter.
 
-PyPI publication, a released compatibility row, and a Harness optional-dependency extra remain
-separate gates after the source wheel and installed-package smoke are reviewed.
+Harness `main` declares the source-only `playbooks` optional-dependency row, but the pack
+is not on PyPI and published Harness `v1.3.0` metadata does not contain that extra. Public
+extra installation and package publication therefore remain separate gates after the
+source wheel and installed-package smoke are reviewed.
