@@ -25,3 +25,6 @@ src/llm_safety_playbooks/py.typed text eol=lf
 src/llm_safety_playbooks/data/policy-pack.v1.json text eol=lf
 tests/test_installed_package_contract.py text eol=lf
 tools/package_smoke.py text eol=lf
+.github/workflows/*.yml text eol=lf
+tools/normalize_sdist.py text eol=lf
+tools/verify_release_index.py text eol=lf
