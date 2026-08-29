@@ -7,9 +7,9 @@
   "kind": "declarative_pack",
   "summary": "Human-readable defensive guidance plus a deterministic offline advisory policy pack; it does not inspect raw content, execute effects, or enforce security policy.",
   "package": {
-    "name": null,
-    "version": null,
-    "install": null,
+    "name": "llm-safety-playbooks",
+    "version": "0.1.0",
+    "install": "pip install .",
     "entry_points": []
   },
   "owns": {
@@ -47,6 +47,10 @@
     "docs/coverage-map.md",
     "contracts/portfolio-observation-guidance.v1.json",
     "contracts/policy-pack.v1.manifest.json",
+    "pyproject.toml",
+    "src/llm_safety_playbooks/__init__.py",
+    "tests/test_installed_package_contract.py",
+    "tools/package_smoke.py",
     "tools/policy_pack.py",
     "docs/policy-pack-v1.md",
     ".github/workflows/roadmap.yml"
@@ -54,14 +58,15 @@
   "claims": [
     "human-readable defensive task guidance",
     "bounded machine-checkable canonical observation review guidance",
-    "deterministic offline content-free advisory policy evaluation"
+    "deterministic offline content-free advisory policy evaluation",
+    "source-installable data-only policy-pack distribution candidate"
   ],
   "non_claims": [
     "security enforcement",
     "runtime isolation",
     "provenance authentication",
     "operational authority",
-    "installable Harness extension"
+    "published or automatically activated Harness extension"
   ],
   "authority": "none"
 }

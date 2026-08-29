@@ -4,7 +4,6 @@ import json
 import unittest
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 ROOT_KEYS = {
     "schema_version",
@@ -46,9 +45,9 @@ def test_component_manifest_is_closed_and_truthful() -> None:
     assert manifest["integration_status"] == "standalone"
     assert manifest["authority"] == "none"
     assert manifest["package"] == {
-        "name": None,
-        "version": None,
-        "install": None,
+        "name": "llm-safety-playbooks",
+        "version": "0.1.0",
+        "install": "pip install .",
         "entry_points": [],
     }
     compatibility = manifest["compatibility"]
@@ -91,6 +90,7 @@ def test_front_door_points_to_component_and_ecosystem_roadmaps() -> None:
     assert "docs/component-roadmap.md" in readme
     assert "agentic-security-harness/blob/main/docs/ecosystem-roadmap.md" in readme
     assert "standalone declarative guidance pack" in readme
+    assert "data-only `llm-safety-playbooks` wheel" in readme
     assert "Historical portfolio snapshots" in roadmap
     assert "deterministic offline advisory evaluator" in roadmap
     component = (ROOT / "component.yaml").read_text(encoding="utf-8")

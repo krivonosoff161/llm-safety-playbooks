@@ -1,0 +1,8 @@
+include AGENTS.md
+include component.yaml
+recursive-include contracts *.json
+recursive-include docs *.md
+recursive-include playbooks *.md
+recursive-include src *.json *.py py.typed
+recursive-include tests *.py *.json
+recursive-include tools *.py

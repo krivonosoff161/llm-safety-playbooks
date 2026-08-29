@@ -85,3 +85,13 @@ python tools/policy_pack.py evaluate tests/fixtures/policy-pack-v1/valid/mixed-s
 
 The command writes one canonical advisory receipt to standard output. It performs no network,
 provider, subprocess, filesystem mutation, approval, enforcement, or effect execution.
+
+## Data-only package boundary
+
+The source tree builds `llm-safety-playbooks` 0.1.0 as a data-only wheel. Its public API returns
+the exact packaged `policy-pack.v1.json` bytes only after checking the reviewed artifact SHA-256.
+The wheel declares no console script or Harness extension entry point and has no runtime
+dependencies. Installing it does not execute playbook text or activate the Harness adapter.
+
+PyPI publication, a released compatibility row, and a Harness optional-dependency extra remain
+separate gates after the source wheel and installed-package smoke are reviewed.

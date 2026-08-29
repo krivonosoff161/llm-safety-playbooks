@@ -10,9 +10,9 @@ import argparse
 import hashlib
 import json
 import sys
+from collections.abc import Mapping
 from pathlib import Path
-from typing import Any, Mapping, Optional
-
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -92,6 +92,7 @@ RULE_SPECS = (
 SIGNALS = tuple(rule["signal"] for rule in RULE_SPECS)
 
 PACK_PATH = Path("contracts/policy-pack.v1.json")
+PACKAGE_PACK_PATH = Path("src/llm_safety_playbooks/data/policy-pack.v1.json")
 PACK_SCHEMA_PATH = Path("contracts/policy-pack.v1.schema.json")
 INPUT_SCHEMA_PATH = Path("contracts/policy-input-receipt.v1.schema.json")
 OUTPUT_SCHEMA_PATH = Path("contracts/policy-evaluation-receipt.v1.schema.json")
@@ -99,8 +100,10 @@ MANIFEST_PATH = Path("contracts/policy-pack.v1.manifest.json")
 FIXTURE_PATH = Path("tests/fixtures/policy-pack-v1/valid/mixed-signals.json")
 BOUND_FILES = (
     Path("AGENTS.md"),
+    Path("MANIFEST.in"),
     Path("README.md"),
     Path("component.yaml"),
+    Path("pyproject.toml"),
     Path("docs/component-roadmap.md"),
     Path("docs/coverage-map.md"),
     Path("docs/policy-pack-v1.md"),
@@ -114,6 +117,10 @@ BOUND_FILES = (
     Path("tests/test_ecosystem_component_contract.py"),
     Path("tests/test_observation_guidance_contract.py"),
     Path("tests/test_policy_pack_contract.py"),
+    Path("tests/test_installed_package_contract.py"),
+    Path("src/llm_safety_playbooks/__init__.py"),
+    Path("src/llm_safety_playbooks/py.typed"),
+    Path("tools/package_smoke.py"),
     Path("tools/policy_pack.py"),
     Path(".github/workflows/roadmap.yml"),
     Path(".gitattributes"),
@@ -277,8 +284,10 @@ def expected_artifacts(root: Path = ROOT) -> dict[Path, bytes]:
         },
         root=root,
     )
+    pack_bytes = _canonical_json(pack) + b"\n"
     artifacts = {
-        PACK_PATH: _canonical_json(pack) + b"\n",
+        PACK_PATH: pack_bytes,
+        PACKAGE_PACK_PATH: pack_bytes,
         PACK_SCHEMA_PATH: _pretty_json(_pack_schema(pack)),
         INPUT_SCHEMA_PATH: _pretty_json(_input_schema()),
         OUTPUT_SCHEMA_PATH: _pretty_json(_output_schema(pack)),
@@ -318,7 +327,9 @@ def validate_repository(root: Path = ROOT) -> None:
     for relative, expected in expected_artifacts(root).items():
         target = root / relative
         if not target.is_file() or target.is_symlink() or target.read_bytes() != expected:
-            raise PolicyPackContractError(f"generated policy-pack artifact drift: {relative.as_posix()}")
+            raise PolicyPackContractError(
+                f"generated policy-pack artifact drift: {relative.as_posix()}"
+            )
     pack = _decode_canonical((root / PACK_PATH).read_bytes(), MAX_OUTPUT_BYTES, "policy pack")
     _validate_pack(pack, root)
 
@@ -369,7 +380,10 @@ def _validate_pack(pack: dict[str, Any], root: Path) -> None:
         raise PolicyPackContractError("policy pack mode is not advisory-only")
     if pack["playbook_digest_semantics"] != PLAYBOOK_DIGEST_SEMANTICS:
         raise PolicyPackContractError("policy pack playbook digest semantics drift")
-    if pack["allowed_dispositions"] != list(DISPOSITIONS) or "allow" in pack["allowed_dispositions"]:
+    if (
+        pack["allowed_dispositions"] != list(DISPOSITIONS)
+        or "allow" in pack["allowed_dispositions"]
+    ):
         raise PolicyPackContractError("policy pack disposition universe drift")
     if pack["verdict_semantics"] != VERDICT_SEMANTICS:
         raise PolicyPackContractError("policy pack verdict semantics drift")
@@ -486,7 +500,10 @@ def _validate_summary(summary: Any, results: list[dict[str, Any]]) -> None:
     if type(summary) is not dict:
         raise PolicyPackContractError("policy output summary must be an object")
     _require_fields(summary, fields, "policy output summary")
-    if any(type(value) is not int or value < 0 or value > len(SIGNALS) for value in summary.values()):
+    if any(
+        type(value) is not int or value < 0 or value > len(SIGNALS)
+        for value in summary.values()
+    ):
         raise PolicyPackContractError("policy output summary count is invalid")
     expected = {name: 0 for name in fields}
     expected["signal_count"] = len(results)
@@ -760,7 +777,7 @@ def _closed_schema(title: str, properties: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def main(argv: Optional[list[str]] = None) -> int:
+def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="command", required=True)
     subparsers.add_parser("generate", help="regenerate source-owned contract artifacts")
