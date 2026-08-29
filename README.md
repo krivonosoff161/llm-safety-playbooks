@@ -15,17 +15,17 @@ control is available.
 
 Today this repository is a standalone declarative guidance pack with one executable,
 deterministic offline advisory evaluator. The current source tree also builds a
-data-only `llm-safety-playbooks` wheel containing the exact canonical Policy Pack V1 bytes. It is not yet
-published, is not a code-loading Harness extension, and Harness does not automatically discover
+data-only `llm-safety-playbooks` wheel containing the exact canonical Policy Pack V1 bytes.
+Version `0.1.0` is published on PyPI. It is not a code-loading Harness extension, and Harness does not automatically discover
 or execute it.
 
 ## Installable data package
 
-Build and install the source candidate:
+Install the exact public distribution directly or through Harness:
 
-```text
-python -m build
-python -m pip install dist/llm_safety_playbooks-0.1.0-py3-none-any.whl
+```bash
+python -m pip install llm-safety-playbooks==0.1.0
+python -m pip install "agentic-security-harness[playbooks]==1.4.0"
 ```
 
 The installed API exposes only verified canonical bytes:
@@ -37,10 +37,8 @@ pack = policy_pack_bytes()
 ```
 
 Importing the package does not load entry points, execute Markdown, inspect content, call a
-provider, or authorize an effect. Harness `main` declares a source-only `playbooks` extra,
-but this package is not on PyPI and published Harness `v1.3.0` metadata does not contain
-that extra. Public `pip install agentic-security-harness[playbooks]` support is therefore
-unavailable; package publication and newer Harness package metadata remain separate release gates.
+provider, or authorize an effect. Published Harness `v1.4.0` exposes the package through
+the passive `playbooks` extra; installation does not activate or execute the playbooks.
 
 ## Core Rule
 

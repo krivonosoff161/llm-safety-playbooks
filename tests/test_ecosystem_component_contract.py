@@ -47,7 +47,7 @@ def test_component_manifest_is_closed_and_truthful() -> None:
     assert manifest["package"] == {
         "name": "llm-safety-playbooks",
         "version": "0.1.0",
-        "install": "pip install .",
+        "install": "pip install llm-safety-playbooks==0.1.0",
         "entry_points": [],
     }
     compatibility = manifest["compatibility"]
@@ -98,15 +98,17 @@ def test_front_door_points_to_component_and_ecosystem_roadmaps() -> None:
     assert "enforce security policy" in component
 
 
-def test_install_docs_distinguish_source_extra_from_public_packages() -> None:
+def test_install_docs_bind_public_package_and_passive_extra() -> None:
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     pack = (ROOT / "docs" / "policy-pack-v1.md").read_text(encoding="utf-8")
 
     for text in (readme, pack):
-        assert "Harness `main`" in text
-        assert "published Harness `v1.3.0` metadata does not contain" in text
-    assert "Public `pip install agentic-security-harness[playbooks]` support" in readme
-    assert "does not load entry points" in readme
+        normalized = " ".join(text.split())
+        assert "Harness `v1.4.0`" in normalized
+        assert "passive `playbooks` extra" in normalized
+    assert "agentic-security-harness[playbooks]==1.4.0" in readme
+    assert "llm-safety-playbooks==0.1.0" in readme
+    assert "no console script or Harness extension entry point" in pack
 
 
 class EcosystemComponentContractTests(unittest.TestCase):
@@ -120,4 +122,4 @@ class EcosystemComponentContractTests(unittest.TestCase):
         test_front_door_points_to_component_and_ecosystem_roadmaps()
 
     def test_source_and_public_install_boundary(self) -> None:
-        test_install_docs_distinguish_source_extra_from_public_packages()
+        test_install_docs_bind_public_package_and_passive_extra()

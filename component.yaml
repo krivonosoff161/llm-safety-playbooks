@@ -9,7 +9,7 @@
   "package": {
     "name": "llm-safety-playbooks",
     "version": "0.1.0",
-    "install": "pip install .",
+    "install": "pip install llm-safety-playbooks==0.1.0",
     "entry_points": []
   },
   "owns": {
@@ -59,14 +59,14 @@
     "human-readable defensive task guidance",
     "bounded machine-checkable canonical observation review guidance",
     "deterministic offline content-free advisory policy evaluation",
-    "source-installable data-only policy-pack distribution candidate"
+    "published data-only policy-pack distribution"
   ],
   "non_claims": [
     "security enforcement",
     "runtime isolation",
     "provenance authentication",
     "operational authority",
-    "published or automatically activated Harness extension"
+    "code-loading or automatically activated Harness extension"
   ],
   "authority": "none"
 }
