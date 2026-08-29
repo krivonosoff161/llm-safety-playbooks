@@ -37,8 +37,10 @@ pack = policy_pack_bytes()
 ```
 
 Importing the package does not load entry points, execute Markdown, inspect content, call a
-provider, or authorize an effect. PyPI publication and inclusion in a Harness optional-dependency
-group remain separate release gates.
+provider, or authorize an effect. Harness `main` declares a source-only `playbooks` extra,
+but this package is not on PyPI and published Harness `v1.3.0` metadata does not contain
+that extra. Public `pip install agentic-security-harness[playbooks]` support is therefore
+unavailable; package publication and newer Harness package metadata remain separate release gates.
 
 ## Core Rule
 
